@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Resume Ranker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>AI - Powered Resume Ranker </h1>
+        <form method ="POSt" enctype="multipart/form-data">
+            <label>Job Description:</label><br>
+            <textarea id="job_desc_long" name="job_description" rows="5" cols="40"></textarea><br><br>
+            <label>Upload Resumes (pdf only):</label>
+            <input type = "file" name="resumes" multiple><br><br>
+            <input type = "submit" value="Rank Resumes" >
+        </form>
+
+    {% if ranks %}
+         <h2 style="text-align:center;">Ranking Results:</h2>
+         <ol>
+         {% for name, score in ranks %}
+            <li>{{ name }} - Score: {{ score|round(3) }}</li>
+         {% endfor %}
+         </ol>
+    {% endif %}
+        
+
+    </body>
+</html>
